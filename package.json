@@ -1,0 +1,21 @@
+{
+  "name": "media-aggregator",
+  "private": true,
+  "version": "0.1.0",
+  "packageManager": "pnpm@10.13.1",
+  "scripts": {
+    "build": "pnpm -r build",
+    "dev": "pnpm --filter @media-aggregator/api dev",
+    "start": "pnpm --filter @media-aggregator/api start",
+    "worker": "pnpm --filter @media-aggregator/worker dev",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "lint": "pnpm -r lint"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.10",
+    "prisma": "^6.8.2",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3"
+  }
+}

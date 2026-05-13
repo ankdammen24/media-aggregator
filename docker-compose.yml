@@ -1,0 +1,41 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: media_aggregator
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+  api:
+    build: .
+    env_file: .env
+    command: pnpm --filter @media-aggregator/api dev
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+      - redis
+    volumes:
+      - .:/app
+
+  worker:
+    build: .
+    env_file: .env
+    command: pnpm --filter @media-aggregator/worker dev
+    depends_on:
+      - redis
+      - postgres
+    volumes:
+      - .:/app
+
+volumes:
+  postgres_data:
