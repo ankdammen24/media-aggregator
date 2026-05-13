@@ -7,3 +7,10 @@ packages:
   - modules/*
   - shared/*
   - infrastructure/*
+
+onlyBuiltDependencies:
+  - '@prisma/client'
+  - '@prisma/engines'
+  - esbuild
+  - msgpackr-extract
+  - prisma

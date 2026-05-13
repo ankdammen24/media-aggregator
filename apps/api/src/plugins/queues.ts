@@ -1,16 +1,20 @@
-import { Queue } from 'bullmq';
 import IORedis from 'ioredis';
-import { env } from '../config/env.js';
+import { Queue } from 'bullmq';
 
-const connection = new IORedis(env.REDIS_URL, { maxRetriesPerRequest: null });
+const redisUrl = process.env.REDIS_URL ?? 'redis://redis:6379';
+
+export const redisConnection = new IORedis.Redis(redisUrl, {
+  maxRetriesPerRequest: null,
+});
 
 export const queues = {
-  rssIngest: new Queue('rss_ingest', { connection }),
-  podcastIngest: new Queue('podcast_ingest', { connection }),
-  aiProcessing: new Queue('ai_processing', { connection }),
-  metadataEnrichment: new Queue('metadata_enrichment', { connection }),
-  transcription: new Queue('transcription', { connection }),
-  syncDispatch: new Queue('sync_dispatch', { connection })
+  rssIngest: new Queue('rss_ingest', {
+    connection: redisConnection,
+  }),
+  podcastIngest: new Queue('podcast_ingest', {
+    connection: redisConnection,
+  }),
 };
 
-export { connection as redisConnection };
+export const rssIngestQueue = queues.rssIngest;
+export const podcastIngestQueue = queues.podcastIngest;

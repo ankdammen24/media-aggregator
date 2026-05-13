@@ -1,11 +1,14 @@
 import { Worker } from 'bullmq';
-import IORedis from 'ioredis';
+import RedisModule from "ioredis";
 import { logger } from '@media-aggregator/logger';
 
+const Redis = RedisModule.default ?? RedisModule;
 const redisUrl = process.env.REDIS_URL;
 if (!redisUrl) throw new Error('REDIS_URL missing');
 
-const connection = new IORedis(redisUrl, { maxRetriesPerRequest: null });
+const connection = new Redis(redisUrl, {
+  maxRetriesPerRequest: null,
+});
 
 const rssWorker = new Worker('rss_ingest', async (job) => {
   logger.info({ jobId: job.id, name: job.name }, 'Processing RSS ingest job');
