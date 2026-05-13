@@ -1,0 +1,236 @@
+# media-aggregator
+You are building a production-ready backend service called "Media Aggregator".
+
+The project is part of a larger ecosystem consisting of:
+
+1. Radio Core
+   - Media engine
+   - Streaming backend
+   - Playback API
+   - Storage abstraction
+   - AI orchestration
+
+2. Listen
+   - Public audio player
+   - On-demand playback
+   - Playlists and user experience
+
+3. Radio Uppsala
+   - Editorial/public media site
+
+The Media Aggregator is responsible for:
+
+- ingesting external media and metadata
+- normalizing data
+- enriching metadata
+- processing AI workflows
+- syncing content into Radio Core
+- federation between external platforms and internal systems
+
+The architecture must be modern, modular, Docker-ready and future Kubernetes-compatible.
+
+--------------------------------------------------
+TECH STACK
+--------------------------------------------------
+
+Use:
+
+- Node.js
+- TypeScript
+- Fastify
+- PostgreSQL
+- Prisma ORM
+- BullMQ
+- Redis
+- Docker Compose
+- pnpm
+
+Code quality requirements:
+
+- strict TypeScript
+- modular architecture
+- environment-based configuration
+- structured logging
+- OpenAPI support
+- scalable worker design
+- production-grade folder structure
+
+--------------------------------------------------
+INITIAL MVP MODULES
+--------------------------------------------------
+
+Build the project structure for:
+
+1. API Gateway
+2. RSS News Ingest
+3. Podcast RSS Ingest
+4. Music Metadata Enrichment
+5. Scheduler/Cron System
+6. Queue System
+7. AI Processing Pipeline
+8. Storage Sync Service
+9. Radio Core Sync Client
+10. Health Monitoring
+
+--------------------------------------------------
+PROJECT GOALS
+--------------------------------------------------
+
+The Media Aggregator should eventually support:
+
+- RSS feeds
+- podcast feeds
+- MusicBrainz
+- Discogs
+- Spotify metadata
+- YouTube metadata
+- social media ingestion
+- AI summarization
+- speech-to-text
+- TTS workflows
+- metadata enrichment
+- recommendation pipelines
+- semantic indexing
+- vector search
+- multi-tenant media federation
+
+But only scaffold the architecture cleanly for now.
+
+--------------------------------------------------
+FOLDER STRUCTURE
+--------------------------------------------------
+
+Create a scalable folder structure similar to:
+
+/apps
+/packages
+/services
+/workers
+/connectors
+/modules
+/shared
+/infrastructure
+/docs
+
+--------------------------------------------------
+DATABASE
+--------------------------------------------------
+
+Setup Prisma models for:
+
+- stations
+- feeds
+- ingest_jobs
+- media_assets
+- podcasts
+- podcast_episodes
+- news_items
+- sync_jobs
+- ai_jobs
+- external_sources
+
+Use UUIDs everywhere.
+
+--------------------------------------------------
+QUEUE SYSTEM
+--------------------------------------------------
+
+Use BullMQ with Redis.
+
+Queues should exist for:
+
+- rss_ingest
+- podcast_ingest
+- ai_processing
+- metadata_enrichment
+- transcription
+- sync_dispatch
+
+--------------------------------------------------
+DOCKER
+--------------------------------------------------
+
+Create:
+
+- Dockerfile
+- docker-compose.yml
+- PostgreSQL service
+- Redis service
+- API service
+- worker service
+
+--------------------------------------------------
+CONFIGURATION
+--------------------------------------------------
+
+Use .env files.
+
+Support future integrations for:
+
+- Azure OpenAI
+- Microsoft Foundry
+- OpenAI API
+- Whisper
+- Cloudflare R2
+- Azure Blob Storage
+- Radio Core API
+
+--------------------------------------------------
+API
+--------------------------------------------------
+
+Expose initial endpoints:
+
+GET /health
+GET /feeds
+POST /feeds
+GET /jobs
+POST /jobs/rss-sync
+POST /jobs/podcast-sync
+
+--------------------------------------------------
+HEALTH SYSTEM
+--------------------------------------------------
+
+Create health checks for:
+
+- PostgreSQL
+- Redis
+- Radio Core connectivity
+- storage connectivity
+
+--------------------------------------------------
+ARCHITECTURE REQUIREMENTS
+--------------------------------------------------
+
+This is not a toy project.
+
+The system must be designed for:
+
+- future SaaS use
+- multiple stations
+- multi-tenant support
+- cloud deployment
+- Kubernetes
+- horizontal scaling
+- AI orchestration
+- event-driven workflows
+
+--------------------------------------------------
+DELIVERABLE
+--------------------------------------------------
+
+Generate:
+
+1. Full project structure
+2. Initial package.json files
+3. Docker setup
+4. Prisma schema
+5. Base Fastify server
+6. Queue scaffolding
+7. Health check endpoints
+8. Example worker
+9. README.md
+10. Environment example files
+
+The result should compile and boot locally with Docker Compose.
